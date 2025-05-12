@@ -1,0 +1,119 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+Screen:
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex("#348A6F")
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDCard:
+        size_hint: None,None
+        size: 400, 600
+        pos_hint: {"center_x":0.5, "y":0}
+        padding: 25
+        spacing: 25
+        orientation: "vertical"
+
+        MDLabel: 
+            text: "Registrarse"
+            font_size: 40
+            halign: "center"
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        MDTextField:
+            id: nombre
+            hint_text: "Nombre"
+            size_hint_x: 1
+            font_size: 18
+            pos_hint: {"center_x":0.5}
+            mode: "round"
+
+        MDTextField:
+            id: apellido
+            hint_text: "Apellido"
+            size_hint_x: 1
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x":0.5}
+            mode: "round"
+
+        MDTextField:
+            id: email
+            hint_text: "Correo Electronico"
+            size_hint_x: 1
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x":0.5}
+            mode: "round"
+
+        MDTextField:
+            id: password
+            hint_text: "Contraseña"
+            size_hint_x: 1
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x":0.5}
+            mode: "round"
+            password: True
+
+        MDTextField:
+            id: confirmPassword
+            hint_text: "Confirmar Contraseña"
+            size_hint_x: 1
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x":0.5}
+            mode: "round"
+            password: True
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint_y: 1
+            height: "32dp"
+
+            MDCheckbox:
+                size_hint: None, None
+                size: "28dp", "28dp"
+                pos_hint: {'center_y': 0.5}
+
+            MDLabel:
+                text: "Mostrar contraseña"
+                valign: "center"
+                pos_hint: {'center_y': 0.5}
+                size_hint_y: None
+                height: "32dp"
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint_y: 1
+            height: "32dp"
+
+            MDCheckbox:
+                size_hint: None, None
+                size: "28dp", "28dp"
+                pos_hint: {'center_y': 0.5}
+
+            MDLabel:
+                text: "Acepto los terminos y condiciones"
+                valign: "center"
+                pos_hint: {'center_y': 0.5}
+                size_hint_y: None
+                height: "32dp"
+            
+        MDRoundFlatButton:
+            text: "Crear cuenta"
+            size_hint_x: 1
+            font_size: 21
+            pos_hint: {"center_x":0.5}
+        
+        MDLabel: 
+            text: "¿Ya tienes cuenta? Inicia sesion"
+            font_size: 18
+            halign: "center"
+            size_hint_y: None
+            size_hint_x: 1
+            height: self.texture_size[1]
