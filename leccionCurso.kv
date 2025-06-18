@@ -1,0 +1,143 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<MyWidget>:
+    orientation: "vertical"
+
+    MDTopAppBar:
+        title: "Curso"
+
+    ScrollView:
+
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint_y: None 
+            height: self.minimum_height
+            padding: [15,15,15,0]
+
+            DetallesCurso:
+                # Parametros
+                fuenteImagen: "./Assets/botellas.png"
+                tituloLeccion: "Introduccion"
+                
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [0,10,0,0]
+
+                MDLabel:
+                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    theme_text_color: "Custom"
+                    text_color: get_color_from_hex("#000000")
+                    font_style: "Body1"
+                    size_hint_y: None
+                    height: self.texture_size[1]       
+
+    MDBoxLayout:
+        orientation: "vertical"
+        size_hint_y: None 
+        height: self.minimum_height
+        padding: [15,0,15,15]
+        spacing: dp(10)
+
+        ButtonWithIconText:
+            picture_source: "./Assets/completado-icono.png"
+            button_description: "Completado"
+            hex_bg_color: "#348a6f"
+            hex_text_color: "#ffffff"
+            hex_border_color: "#348a6f"
+        
+
+        ButtonWithIconText:
+            picture_source: "./Assets/siguiente-icono.png"
+            button_description: "Siguiente Leccion"
+            hex_bg_color: "#ffffff"
+            hex_text_color: "#6a6a6a"
+            hex_border_color: "#6a6a6a"
+            
+
+<ButtonWithIconText@MDBoxLayout>:
+    picture_source: ""
+    button_description: ""
+    hex_bg_color: ""
+    hex_text_color: "#FFFFFF"
+    hex_border_color: "#FFFFFF"
+
+    size_hint_x: 1
+    size_hint_y: None
+    height: dp(48)
+    radius: [dp(24)]
+    padding: dp(10), 0
+    spacing: dp(10)
+    halign: "center"
+
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex(root.hex_border_color)
+        Line:
+            rounded_rectangle: self.x, self.y, self.width, self.height, dp(24)
+            width: 1.5
+            
+        Color:
+            rgba: get_color_from_hex(root.hex_bg_color)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(24)]
+
+    FloatLayout:
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_x: None
+            size_hint_y: None
+            width: self.minimum_width
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            spacing: dp(5)
+
+            Image:
+                source: root.picture_source
+                size_hint: None, None
+                size: dp(24), dp(24)
+
+            MDLabel:
+                text: root.button_description
+                theme_text_color: "Custom"
+                text_color: get_color_from_hex(root.hex_text_color)
+                font_style: "Button"
+                size_hint_y: None
+                size_hint_x: None
+                height: self.texture_size[1]
+                width: self.texture_size[0]
+                text_size: None, None
+                font_size: dp(22)
+
+
+<DetallesCurso@BoxLayout>:
+    # Variables
+    fuenteImagen: ""
+    tituloLeccion: ""
+
+    # Estilo
+    orientation: "vertical"
+    size_hint_x: 1
+    size_hint_y: None
+    height: self.minimum_height
+
+
+    # Hijos
+    Image:
+        source: root.fuenteImagen
+        size_hint_x: 1
+        size_hint_y: None
+        height: 250
+        allow_stretch: True
+        keep_ratio: False
+
+    MDLabel:
+        text: root.tituloLeccion
+        font_size: 40
+        size_hint_y: None
+        height: self.texture_size[1]
+
+                            
