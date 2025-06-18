@@ -1,0 +1,71 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<ExplorarMinicursosScreen>:
+    name: "explorarMinicursos"
+    orientation: "vertical"
+
+    MDTopAppBar:
+        title: "Aprendizaje"
+
+    ScrollView:
+        MDList:
+            id: cursos_lista
+            padding: dp(16)
+
+            CourseCard: 
+                image_path: "./Assets/botellas.png"
+                title_text: "Manualidades con botellas"
+                subtitle_text: "Juan"
+
+<CourseCard@MDCard>:
+    image_path: ""
+    title_text: ""
+    subtitle_text: ""
+
+    canvas.before:
+        Color:
+            rgba: 0.5, 0.5, 0.5, 1  # Color del borde (negro)
+        RoundedRectangle:
+            pos: self.x - dp(2), self.y - dp(2)  # Ajusta la posición del borde
+            size: self.width + dp(4), self.height + dp(4)  # Ajusta el tamaño del borde
+            radius: [dp(10), dp(10), dp(10), dp(10)]  
+
+    size_hint_x: 1
+    size_hint_y: None
+    height: self.minimum_height
+    padding: 10
+    radius: dp(10) 
+    orientation: 'horizontal'
+
+    Image:
+        source: root.image_path
+        size_hint_x: None
+        size_hint_y: None
+        width: 130
+        height: 100
+        allow_stretch: True
+        keep_ratio: True
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 1
+        size_hint_y: None
+        height: self.minimum_height
+        padding: [10,0,0,0]
+        pos_hint: {"center_y": 0.5} 
+
+        MDLabel:
+            text: f"[b]{root.title_text}[/b]"
+            theme_text_color: "Primary" 
+            font_size: 25
+            size_hint_y: None  
+            height: self.texture_size[1]
+            markup: True
+
+        MDLabel:
+            text: "Creado por: " + root.subtitle_text
+            theme_text_color: "Primary"   
+            size_hint_y: None
+            height: self.texture_size[1]  
+            pos_hint: {"center_y":0.5}   
+                        
