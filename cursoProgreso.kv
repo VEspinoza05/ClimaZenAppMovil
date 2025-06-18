@@ -1,0 +1,183 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<MyWidget>:
+    orientation: "vertical"
+
+    MDTopAppBar:
+        title: "Curso"
+
+    ScrollView:
+
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint_y: None 
+            height: self.minimum_height
+            padding: [15,15,15,0]
+
+            DetallesCurso:
+                # Parametros
+                fuenteImagen: "./Assets/botellas.png"
+                tituloTexto: "Curso de manualidades con botellas"
+                descripcionTexto: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                creadorTexto: "Juan Perez"
+                cantidadSecciones: 2
+                cantidadLecciones: 5
+            
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+
+                #Hijos
+                SeccionContenedor:
+                    seccionTexto: "Seccion 1"
+
+                    LeccionesContenedor:
+                        LeccionItem:
+                            nombreLeccionTexto: "Leccion A"
+
+                        MDSeparator:
+                            height: "1dp"
+                                        
+                        LeccionItem:
+                            nombreLeccionTexto: "Leccion B"
+
+                        MDSeparator:
+                            height: "1dp"
+                                        
+                        LeccionItem:
+                            nombreLeccionTexto: "Leccion C"
+                
+                SeccionContenedor:
+                    seccionTexto: "Seccion 2"
+
+                    LeccionesContenedor:
+                        LeccionItem:
+                            nombreLeccionTexto: "Leccion A"
+
+                        MDSeparator:
+                            height: "1dp"
+                                        
+                        LeccionItem:
+                            nombreLeccionTexto: "Leccion B"
+        
+
+
+<DetallesCurso@BoxLayout>:
+    # Variables
+    fuenteImagen: ""
+    tituloTexto: ""
+    descripcionTexto: ""
+    creadorTexto: ""
+    cantidadSecciones: 0
+    cantidadLecciones: 0
+
+    # Estilo
+    orientation: "vertical"
+    size_hint_x: 1
+    size_hint_y: None
+    height: self.minimum_height
+
+
+    # Hijos
+    Image:
+        source: root.fuenteImagen
+        size_hint_x: 1
+        size_hint_y: None
+        height: 250
+        allow_stretch: True
+        keep_ratio: False
+    
+    BoxLayout:
+        orientation: "vertical"
+        size_hint_y: None 
+        height: self.minimum_height  
+
+        MDLabel:
+            text: root.tituloTexto
+            font_size: 40
+            size_hint_y: None
+            height: self.texture_size[1]
+
+        MDLabel:
+            text: root.descripcionTexto
+            font_size: 18
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding: [0,10,0,10]
+        
+        MDLabel:
+            text: "Creado por: " + root.creadorTexto
+            font_size: 18
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding: [0,10,0,10]
+        
+        MDLabel:
+            text: f"{str(root.cantidadSecciones)} Secciones, {str(root.cantidadLecciones)} Lecciones"
+            font_size: 18
+            size_hint_y: None
+            height: self.texture_size[1]
+
+<SeccionContenedor@MDBoxLayout>:
+    # Parametros
+    seccionTexto: ""
+    
+    # Atributos
+    orientation: "vertical"
+    size_hint_x: 1
+    size_hint_y: None
+    adaptive_height: True
+    valign: "top"
+
+    # Hijos
+    MDLabel:
+        text: f"[b]{root.seccionTexto}[/b]" 
+        font_size: 24
+        size_hint_y: None
+        height: self.texture_size[1]
+        markup: True
+        padding: [0,10,0,10]
+           
+<LeccionesContenedor@MDBoxLayout>:
+    orientation: "vertical"
+    size_hint_y: None
+    size_hint_x: 1
+    radius: [20, 20, 20, 20]
+    line_color: 0, 0, 0, 0.2
+    padding: [10,0,10,0]
+    adaptive_height: True
+        
+
+<LeccionItem@MDBoxLayout>:
+    # Parametros
+    nombreLeccionTexto: ""
+
+    # Estilo
+    orientation: "horizontal"
+    size_hint_y: None
+    size_hint_x: 1
+    height: self.minimum_height 
+    padding: [0,8,0,8]
+
+    # Hijos
+    Image:
+        source: "./Assets/Libro.png"
+        size_hint_x: None
+        size_hint_y: None
+        width: 25
+        height: 25
+        allow_stretch: True
+        keep_ratio: False
+
+    MDLabel:
+        text: root.nombreLeccionTexto
+        font_size: 18
+        size_hint_x: 1
+        size_hint_y: None
+        height: 28
+        padding: [8,0,8,0]
+                        
+    MDCheckbox:
+        size_hint: None, None
+        size: 25,25
